@@ -20,13 +20,20 @@ public class Cacheable {
   private long id;
 
   @NotNull
-  @Max(value = 255)
   @Column(name = "NAME")
   private String name;
 
-  @Max(value = 255)
   @Column(name = "DESC")
   private String desc;
+
+  public Cacheable() {}
+
+  public Cacheable(
+      @NotNull @Max(value = 255) String name,
+      @Max(value = 255) String desc) {
+    this.name = name;
+    this.desc = desc;
+  }
 
   public long getId() {
     return id;
