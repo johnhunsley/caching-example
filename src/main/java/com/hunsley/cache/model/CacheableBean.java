@@ -13,7 +13,7 @@ import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "CACHABLE")
-public class Cacheable {
+public class CacheableBean {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,9 +26,9 @@ public class Cacheable {
   @Column(name = "DESC")
   private String desc;
 
-  public Cacheable() {}
+  public CacheableBean() {}
 
-  public Cacheable(
+  public CacheableBean(
       @NotNull @Max(value = 255) String name,
       @Max(value = 255) String desc) {
     this.name = name;
@@ -64,12 +64,12 @@ public class Cacheable {
     if (this == o) {
       return true;
     }
-    if (!(o instanceof Cacheable)) {
+    if (!(o instanceof CacheableBean)) {
       return false;
     }
-    Cacheable cacheable = (Cacheable) o;
-    return id == cacheable.id &&
-        name.equals(cacheable.name);
+    CacheableBean cacheableBean = (CacheableBean) o;
+    return id == cacheableBean.id &&
+        name.equals(cacheableBean.name);
   }
 
   @Override

@@ -2,7 +2,7 @@ package com.hunsley.cache.service;
 
 import static org.junit.Assert.assertEquals;
 
-import com.hunsley.cache.model.Cacheable;
+import com.hunsley.cache.model.CacheableBean;
 import com.hunsley.cache.model.CacheableException;
 import com.hunsley.cache.repository.CacheableRepository;
 import org.junit.Test;
@@ -23,12 +23,12 @@ public class CacheableServiceTest {
 
   @Test
   public void testCache() throws CacheableException {
-    cacheableRepository.save(new Cacheable("a","a"));
-    cacheableRepository.save(new Cacheable("b","b"));
-    cacheableRepository.save(new Cacheable("c","c"));
+    cacheableRepository.save(new CacheableBean("a","a"));
+    cacheableRepository.save(new CacheableBean("b","b"));
+    cacheableRepository.save(new CacheableBean("c","c"));
 
-    for (Cacheable cacheable : cacheableRepository.findAll()) {
-      final long id = cacheable.getId();
+    for (CacheableBean cacheableBean : cacheableRepository.findAll()) {
+      final long id = cacheableBean.getId();
       cacheableService.getCachable(id);
       cacheableService.getCachable(id);
       cacheableService.getCachable(id);

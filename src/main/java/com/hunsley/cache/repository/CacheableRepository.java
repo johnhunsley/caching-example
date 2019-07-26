@@ -1,11 +1,11 @@
 package com.hunsley.cache.repository;
 
-import com.hunsley.cache.model.Cacheable;
+import com.hunsley.cache.model.CacheableBean;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface CacheableRepository extends CrudRepository<Cacheable, Long> {
+public interface CacheableRepository extends CrudRepository<CacheableBean, Long> {
 
 
 

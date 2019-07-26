@@ -1,12 +1,13 @@
 package com.hunsley.cache.service;
 
-import com.hunsley.cache.model.Cacheable;
+import com.hunsley.cache.model.CacheableBean;
 import com.hunsley.cache.model.CacheableException;
 import com.hunsley.cache.repository.CacheableRepository;
 import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -20,12 +21,12 @@ public class CacheableService {
   private int call = 0;
 
 
-  @org.springframework.cache.annotation.Cacheable("mycache")
-  public synchronized Cacheable getCachable(Long id) throws CacheableException {
+  @Cacheable("mycache")
+  public synchronized CacheableBean getCachable(Long id) throws CacheableException {
     call++;
     logger.info("service has been called " + call + " times");
 
-    Optional<Cacheable> result = cacheableRepository.findById(id);
+    Optional<CacheableBean> result = cacheableRepository.findById(id);
 
     if(result.isPresent()) {
       return result.get();

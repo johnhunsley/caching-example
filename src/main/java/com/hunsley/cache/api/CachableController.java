@@ -1,6 +1,6 @@
 package com.hunsley.cache.api;
 
-import com.hunsley.cache.model.Cacheable;
+import com.hunsley.cache.model.CacheableBean;
 import com.hunsley.cache.model.CacheableException;
 import com.hunsley.cache.service.CacheableService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +16,7 @@ public class CachableController {
   private CacheableService cacheableService;
 
   @RequestMapping(path = "cachable/{id}", method = RequestMethod.GET)
-  public Cacheable getCachable(@PathVariable(name = "id") long id) throws CacheableException {
+  public CacheableBean getCachable(@PathVariable(name = "id") long id) throws CacheableException {
     return cacheableService.getCachable(id);
   }
 }
