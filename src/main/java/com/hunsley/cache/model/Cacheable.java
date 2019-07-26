@@ -1,0 +1,72 @@
+package com.hunsley.cache.model;
+
+
+import java.util.Objects;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.NotNull;
+
+@Entity
+@Table(name = "CACHABLE")
+public class Cacheable {
+
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private long id;
+
+  @NotNull
+  @Max(value = 255)
+  @Column(name = "NAME")
+  private String name;
+
+  @Max(value = 255)
+  @Column(name = "DESC")
+  private String desc;
+
+  public long getId() {
+    return id;
+  }
+
+  public void setId(long id) {
+    this.id = id;
+  }
+
+  public String getName() {
+    return name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
+  }
+
+  public String getDesc() {
+    return desc;
+  }
+
+  public void setDesc(String desc) {
+    this.desc = desc;
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (!(o instanceof Cacheable)) {
+      return false;
+    }
+    Cacheable cacheable = (Cacheable) o;
+    return id == cacheable.id &&
+        name.equals(cacheable.name);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(id, name);
+  }
+}
