@@ -45,7 +45,5 @@ public class MapCacheableServiceTest {
     }
 
     assertEquals(3, cacheableService.getCall());
-
   }
-
 }
