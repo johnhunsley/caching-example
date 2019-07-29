@@ -21,7 +21,7 @@ public class CacheableService {
   private int call = 0;
 
 
-  @Cacheable(value = "mycache", keyGenerator = "simpleKeyGenerator")
+  @Cacheable(value = "mycache", keyGenerator = "customKeyGenerator")
   public synchronized CacheableBean getCachable(Long id) throws CacheableException {
     call++;
     logger.info("service has been called " + call + " times");
@@ -37,5 +37,9 @@ public class CacheableService {
 
   public int getCall() {
     return call;
+  }
+
+  public void resetCall() {
+    call = 0;
   }
 }

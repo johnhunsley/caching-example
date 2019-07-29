@@ -13,7 +13,7 @@ import org.springframework.context.annotation.Profile;
 @Profile("ehcache")
 public class EhCacheConfig {
 
-  @Bean("simpleKeyGenerator")
+  @Bean("customKeyGenerator")
   public KeyGenerator keyGenerator() {
     return new SimpleKeyGenerator();
   }
