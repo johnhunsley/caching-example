@@ -15,10 +15,13 @@ import org.springframework.cache.annotation.Cacheable;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
+/**
+ * Testing cache and expire functions with an ehcache backed cache manager
+ */
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @ActiveProfiles("ehcache")
-public class CacheableServiceTest {
+public class EHCacheableServiceTest {
 
   @Autowired
   private CacheableService cacheableService;
