@@ -26,6 +26,11 @@ public class MapCacheableServiceTest {
   @Autowired
   private CacheableRepository cacheableRepository;
 
+  /**
+   * Insert 3 different beans, call to get each one 3 times. the
+   * second and third calls should defer to the cache rather than
+   * enter the service method.
+   */
   @Test
   public void testCache() throws CacheableException {
     cacheableRepository.save(new CacheableBean("a","a"));
