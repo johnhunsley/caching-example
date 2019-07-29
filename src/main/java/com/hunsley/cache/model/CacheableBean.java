@@ -1,6 +1,7 @@
 package com.hunsley.cache.model;
 
 
+import java.io.Serializable;
 import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,7 +14,8 @@ import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "CACHABLE")
-public class CacheableBean {
+public class CacheableBean implements Serializable {
+  private static final long serialVersionUID = 1L;
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)

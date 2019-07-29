@@ -9,10 +9,12 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
+@ActiveProfiles("ehcache")
 public class CacheableServiceTest {
 
   @Autowired
@@ -21,11 +23,14 @@ public class CacheableServiceTest {
   @Autowired
   private CacheableRepository cacheableRepository;
 
+  /**
+   * With the {@link org.springframework.cache.annotation.Cacheable} annotation on the
+   * service's getCacheable(...) method should only be entered once, even though it is
+   * called 3 times
+   */
   @Test
-  public void testCache() throws CacheableException {
+  public void testCache() throws CacheableException, InterruptedException {
     cacheableRepository.save(new CacheableBean("a","a"));
-    cacheableRepository.save(new CacheableBean("b","b"));
-    cacheableRepository.save(new CacheableBean("c","c"));
 
     for (CacheableBean cacheableBean : cacheableRepository.findAll()) {
       final long id = cacheableBean.getId();
@@ -34,7 +39,16 @@ public class CacheableServiceTest {
       cacheableService.getCachable(id);
     }
 
-    assertEquals(3, cacheableService.getCall());
+    assertEquals(1, cacheableService.getCall());
+//
+//    Thread.sleep(31000);
+//
+//    for (CacheableBean cacheableBean : cacheableRepository.findAll()) {
+//      final long id = cacheableBean.getId();
+//      cacheableService.getCachable(id);
+//    }
+//
+//    assertEquals(2, cacheableService.getCall());
 
   }
 
